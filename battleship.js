@@ -27,15 +27,7 @@ for (i = 0; i < cols; i++) {
 	}
 }
 
-/* lazy way of tracking when the game is won: just increment hitCount on every hit
-   in this version, and according to the official Hasbro rules (http://www.hasbro.com/common/instruct/BattleShip_(2002).PDF)
-   there are 17 hits to be made in order to win the game:
-      Carrier     - 5 hits
-      Battleship  - 4 hits
-      Destroyer   - 3 hits
-      Submarine   - 3 hits
-      Patrol Boat - 2 hits
-*/
+
 var hitCount = 0;
 
 /* create the 2d array that will contain the status of each square on the board
@@ -59,7 +51,7 @@ var gameBoard = [
 // set event listener for all elements in gameboard, run fireTorpedo function when square is clicked
 gameBoardContainer.addEventListener("click", fireTorpedo, false);
 
-// initial code via http://www.kirupa.com/html5/handling_events_for_many_elements.htm:
+
 function fireTorpedo(e) {
     // if item clicked (e.target) is not the parent element on which the event listener was set (e.currentTarget)
 	if (e.target !== e.currentTarget) {
@@ -84,12 +76,12 @@ function fireTorpedo(e) {
 			hitCount++;
 			// this definitely shouldn't be hard-coded, but here it is anyway. lazy, simple solution:
 			if (hitCount == 17) {
-				alert("All enemy battleships have been defeated! You win!");
+				alert("All battleships are sunk! On to the next mission!");
 			}
 			
 		// if player clicks a square that's been previously hit, let them know
 		} else if (gameBoard[row][col] > 1) {
-			alert("Stop wasting your torpedos! You already fired at this location.");
+			alert("Please save your shots! You already fired at this tile.");
 		}		
     }
     e.stopPropagation();
